@@ -24,3 +24,23 @@ async def main():
 asyncio.run(main())
 ```
 
+now what the websocket server is up , so whats next
+
+next is the user or the client
+
+```python
+#!/usr/bin/env python
+
+import asyncio
+from websockets.server import serve
+
+async def echo(websocket):
+    async for message in websocket:
+        await websocket.send(message)
+
+async def main():
+    async with serve(echo, "localhost", 8765):
+        await asyncio.Future()  # run forever
+
+asyncio.run(main())
+```
